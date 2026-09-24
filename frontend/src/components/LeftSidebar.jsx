@@ -9,20 +9,64 @@ export default function LeftSidebar({ data, updateData }) {
     updateData({ [e.target.name]: e.target.value });
   };
 
-  const handleCalc = async () => {
+  const handleCalc = () => {
     setLoadingCalc(true);
     try {
-      const res = await axios.post('/api/v1/pccc_calc/calculate', {
-        material_type: data.material_type || 'wood',
-        time_free_burn_minutes: 15,
-        fire_shape: "circle",
-        nozzle_type: "nozzle_B"
+      const material_type = data.material_type || 'wood';
+      const time_free_burn_minutes = 15;
+      
+      const FIRE_MATERIAL_SPECS = {
+        wood: { v_lan: 0.015, i_y: 0.08, i_lm: 0.04 },
+        textile: { v_lan: 0.02, i_y: 0.10, i_lm: 0.05 },
+        paper_carton: { v_lan: 0.018, i_y: 0.09, i_lm: 0.045 },
+        plastic: { v_lan: 0.025, i_y: 0.12, i_lm: 0.06 },
+        petroleum: { v_lan: 0.03, i_y: 0.08, i_lm: 0.05 }
+      };
+      
+      const mat = FIRE_MATERIAL_SPECS[material_type] || FIRE_MATERIAL_SPECS.wood;
+      const v_l_m_min = mat.v_lan * 60;
+      
+      let r_ch = 0;
+      if (time_free_burn_minutes <= 10) {
+        r_ch = 0.5 * v_l_m_min * time_free_burn_minutes;
+      } else {
+        r_ch = 0.5 * v_l_m_min * 10 + v_l_m_min * (time_free_burn_minutes - 10);
+      }
+      
+      const s_ch = Math.PI * Math.pow(r_ch, 2);
+      
+      let s_cc = 0;
+      const h_cc = 5.0;
+      if (r_ch <= h_cc) {
+        s_cc = s_ch;
+      } else {
+        s_cc = Math.PI * (Math.pow(r_ch, 2) - Math.pow(r_ch - h_cc, 2));
+      }
+      
+      const q_ct = s_cc * mat.i_y;
+      const q_lm = s_ch * mat.i_lm;
+      
+      const q_lang = 3.5; // nozzle B
+      let n_lcc = q_ct > 0 ? Math.ceil(q_ct / q_lang) : 0;
+      const n_llm = q_lm > 0 ? Math.ceil(q_lm / q_lang) : 0;
+      
+      if (n_lcc === 0 && s_ch > 0) n_lcc = 1;
+      
+      const q_tong = (n_lcc * q_lang) + (n_llm * q_lang);
+      const q_xe = 40.0;
+      const n_xe = Math.ceil(q_tong / q_xe);
+      
+      updateData({
+        radius_m: Math.round(r_ch * 100) / 100,
+        fire_area_m2: Math.round(s_ch * 100) / 100,
+        fire_trucks_needed: n_xe,
+        nozzles_extinguish: n_lcc,
+        nozzles_cooling: n_llm
       });
-      updateData(res.data);
     } catch (e) {
       alert("Lỗi tính toán: " + e.message);
     }
-    setLoadingCalc(false);
+    setTimeout(() => setLoadingCalc(false), 300);
   };
 
   return (

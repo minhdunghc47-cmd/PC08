@@ -12,8 +12,8 @@ export default async function handler(req, res) {
 
   try {
     const genAI = new GoogleGenerativeAI(apiKey);
-    // Bắt buộc dùng gemini-2.5-flash cho độ ổn định cao nhất năm 2026
-    const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
+    // Bắt buộc dùng gemini-3.8-flash theo yêu cầu mới nhất của Google
+    const model = genAI.getGenerativeModel({ model: "gemini-3.8-flash" });
 
     const result = await model.generateContent(prompt_text);
     const response = await result.response;
