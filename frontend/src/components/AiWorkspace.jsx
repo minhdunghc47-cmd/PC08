@@ -94,7 +94,7 @@ Tuyệt đối không sinh lan man sang các mục khác. Chỉ viết nội dun
       
       try {
         await generateContentForSection(section.id);
-        await new Promise(resolve => setTimeout(resolve, 2000)); // Delay to avoid Rate Limit
+        await new Promise(resolve => setTimeout(resolve, 4500)); // Delay 4.5s to avoid 15 RPM Rate Limit
       } catch (error) {
         console.error(`Lỗi ở mục ${section.id}`, error);
         alert(`Auto-pilot dừng ở mục ${section.title} do lỗi mạng/quá tải.`);
