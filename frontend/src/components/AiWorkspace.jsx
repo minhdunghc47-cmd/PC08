@@ -27,11 +27,11 @@ export default function AiWorkspace({ data, updateData }) {
 
   const currentText = data[activeSection] || '';
 
-  const handleGenerate = async () => {
-    setLoading(true);
-    try {
-      const sectionTitle = SECTIONS.find(s => s.id === activeSection).title;
-      const prompt_text = `Bạn là một Chỉ huy trưởng Tham mưu Tác chiến PCCC & CNCH xuất sắc của Bộ Công an. Bạn không viết văn bản hành chính khô khan, bạn đang kể lại một "Kịch bản Tác chiến Sinh tử" trên sa bàn.
+  const [isAutoRunning, setIsAutoRunning] = useState(false);
+
+  const generateContentForSection = async (secId) => {
+    const sectionTitle = SECTIONS.find(s => s.id === secId).title;
+    const prompt_text = `Bạn là một Chỉ huy trưởng Tham mưu Tác chiến PCCC & CNCH xuất sắc của Bộ Công an. Bạn không viết văn bản hành chính khô khan, bạn đang kể lại một "Kịch bản Tác chiến Sinh tử" trên sa bàn.
 Giọng văn của bạn: Mạch lạc, dứt khoát, liền mạch. Tự nhiên lồng ghép các hiện tượng lý hóa và thuật ngữ chỉ huy. Tuyệt đối không dùng gạch đầu dòng liệt kê máy móc.
 Nếu người dùng cung cấp link Google Maps hoặc tọa độ, hãy giả định khoảng cách từ Đội Cảnh sát PCCC gần nhất đến cơ sở để viết chi tiết mục Lộ trình tiếp cận. Đánh giá tính chất giao thông (đường lớn hay ngõ hẻm) dựa trên địa chỉ và lộ trình này.
 
@@ -42,13 +42,40 @@ Cơ sở: ${data.ten_co_so || 'Chưa rõ'}
 Vị trí bản đồ: ${data.google_maps_link || 'Không có'}
 Tuyệt đối không sinh lan man sang các mục khác. Chỉ viết nội dung phục vụ cho đúng đầu mục này. Không bọc trong Markdown \`\`\`.`;
 
-      const res = await axios.post('/api/llm', { prompt_text });
-      updateData({ [activeSection]: res.data.text });
+    const res = await axios.post('/api/llm', { prompt_text });
+    updateData({ [secId]: res.data.text });
+  };
+
+  const handleGenerate = async () => {
+    setLoading(true);
+    try {
+      await generateContentForSection(activeSection);
     } catch (e) { 
       const errMsg = e.response?.data?.text || e.message;
       alert("Lỗi AI: " + errMsg); 
     }
     setLoading(false);
+  };
+
+  const handleAutoGenerateAll = async () => {
+    setIsAutoRunning(true);
+    for (const section of SECTIONS) {
+      if (data[section.id]) continue; // Skip if already filled
+      
+      setActiveSection(section.id);
+      setLoading(true);
+      
+      try {
+        await generateContentForSection(section.id);
+        await new Promise(resolve => setTimeout(resolve, 2000)); // Delay to avoid Rate Limit
+      } catch (error) {
+        console.error(`Lỗi ở mục ${section.id}`, error);
+        alert(`Auto-pilot dừng ở mục ${section.title} do lỗi mạng/quá tải.`);
+        break;
+      }
+    }
+    setLoading(false);
+    setIsAutoRunning(false);
   };
 
   const handleRefine = async () => {
@@ -98,9 +125,18 @@ VĂN BẢN MỚI:`;
           ))}
         </select>
 
-        <button onClick={handleGenerate} disabled={loading} className="w-full bg-gradient-to-r from-purple-600 to-indigo-600 hover:opacity-90 text-white font-medium py-2 rounded-lg flex items-center justify-center gap-2 transition-all shadow-sm">
-          {loading ? <Loader2 className="animate-spin" size={16}/> : <Sparkles size={16}/>} 
+        <button onClick={handleGenerate} disabled={loading || isAutoRunning} className="w-full bg-gradient-to-r from-purple-600 to-indigo-600 hover:opacity-90 text-white font-medium py-2 rounded-lg flex items-center justify-center gap-2 transition-all shadow-sm">
+          {loading && !isAutoRunning ? <Loader2 className="animate-spin" size={16}/> : <Sparkles size={16}/>} 
           Viết Nháp Mới
+        </button>
+
+        <button 
+          onClick={handleAutoGenerateAll} 
+          disabled={isAutoRunning} 
+          className="w-full bg-gradient-to-r from-emerald-500 to-teal-600 hover:opacity-90 text-white font-bold py-2 rounded-lg flex items-center justify-center gap-2 transition-all shadow-sm mt-1 border-b-4 border-emerald-700 active:border-b-0 active:mt-2"
+        >
+          {isAutoRunning ? <Loader2 className="animate-spin" size={18}/> : "🚀"} 
+          {isAutoRunning ? "Đang chạy Auto-Pilot..." : "Chạy Auto-Pilot (Sinh toàn bộ)"}
         </button>
       </div>
 
