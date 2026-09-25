@@ -11,6 +11,36 @@ export default function DocumentPreview({ data }) {
     alert("Tính năng tải xuống file Word đang được cập nhật để khớp với cấu trúc mới!");
   };
 
+  const renderMarkdownTable = (text) => {
+    if (!text) return <p className="whitespace-pre-wrap mb-4">...</p>;
+    
+    if (!text.includes('|---|') && !text.includes('| --- |')) {
+      return <p className="whitespace-pre-wrap mb-4">{text}</p>;
+    }
+    
+    const lines = text.trim().split('\n').filter(l => l.includes('|'));
+    
+    return (
+      <table className="w-full border-collapse border border-black mb-4 text-[14pt]">
+        <tbody>
+          {lines.map((line, i) => {
+            if (line.includes('|---|') || line.includes('| --- |')) return null;
+            const cols = line.split('|').map(c => c.trim()).filter((_, index, arr) => index > 0 && index < arr.length - 1);
+            
+            if (cols.length === 0) return null;
+
+            if (i === 0) { 
+               return <tr key={i}>{cols.map((c, j) => <th key={j} className="border border-black p-2 text-center align-middle font-bold bg-gray-50">{c}</th>)}</tr>;
+            }
+            return (
+               <tr key={i}>{cols.map((c, j) => <td key={j} className={`border border-black p-2 ${j === 0 ? 'text-center' : ''}`}>{c}</td>)}</tr>
+            );
+          })}
+        </tbody>
+      </table>
+    );
+  };
+
   return (
     <div className="bg-gray-200 p-2 md:p-8 overflow-x-auto overflow-y-auto flex md:justify-center w-full h-full relative">
       {/* Header Button */}
@@ -127,8 +157,8 @@ export default function DocumentPreview({ data }) {
             <p className="font-bold uppercase mb-2">II. Giao thông bên trong và bên ngoài</p>
             <div className="whitespace-pre-wrap mb-4 ml-8">{data.a_ii_giao_thong || '1. Giao thông bên trong\na) Cổng chính: chiều rộng ....m; chiều cao.....m;\nCổng phụ (nếu có): chiều rộng ....m; chiều cao.....m;\nb) Đường giao thông xung quanh...\n2. Giao thông bên ngoài...'}</div>
             
-            <p className="font-bold">III. Nguồn nước phục vụ chữa cháy</p>
-            <p className="whitespace-pre-wrap mb-4">{data.a_iii_nguon_nuoc || '...'}</p>
+            <p className="font-bold uppercase mb-2">III. Nguồn nước phục vụ chữa cháy</p>
+            {renderMarkdownTable(data.a_iii_nguon_nuoc)}
             
             <p className="font-bold">IV. Tính chất, đặc điểm nguy hiểm cháy, nổ, độc</p>
             <p className="whitespace-pre-wrap mb-4">{data.a_iv_nguy_hiem || '...'}</p>

@@ -56,6 +56,21 @@ Tuyến đường và khoảng cách từ đơn vị Cảnh sát phòng cháy, c
 - Tổ Cảnh sát chữa cháy và cứu nạn, cứu hộ khu vực [Điền số khu vực] (Phòng PC07) -> Đường [Điền tên đường] -> Đường [Điền tên đường] -> Cơ sở ([Điền số] km).
 - Đội phòng cháy, chữa cháy và cứu nạn, cứu hộ chuyên ngành [Điền tên đội] -> Đường [Điền tên đường] -> Đường [Điền tên đường] -> Cơ sở ([Điền số] km).
 `;
+    } else if (secId === 'a_iii_nguon_nuoc') {
+      specificRule = `
+CHỈ THỊ TỐI CAO: BẠN PHẢI TRẢ VỀ ĐÚNG 1 BẢNG MARKDOWN NHƯ BÊN DƯỚI, TỰ ĐỘNG PHÂN TÍCH ĐỊA CHỈ TRÊN MAP ĐỂ TÌM XEM CÓ TRỤ NƯỚC KCN, HỒ AO SÔNG NÀO GẦN ĐÓ KHÔNG ĐỂ ĐIỀN VÀO.
+NẾU KHÔNG CÓ THÌ BỎ TRỐNG, NHƯNG KHUNG BẢNG PHẢI GIỮ NGUYÊN:
+
+| TT | Nguồn nước | Trữ lượng (m3) hoặc lưu lượng (l/s) | Vị trí, khoảng cách tới nguồn nước | Những điểm lưu ý |
+|---|---|---|---|---|
+| I | Bên trong | | | |
+| 1 | Bể nước | [Điền] | [Điền] | [Điền] |
+| 2 | Trụ nước chữa cháy | [Điền] | [Điền] | [Điền] |
+| II | Bên ngoài | | | |
+| 1 | Trụ nước chữa cháy | [Điền] | [Điền] | [Điền] |
+| 2 | Hồ, ao, sông... lân cận | [Điền] | [Điền] | [Điền] |
+| 3 | Bể nước cơ sở lân cận | [Điền] | [Điền] | [Điền] |
+`;
     }
 
     const prompt_text = `Bạn là một Chỉ huy trưởng Tham mưu Tác chiến PCCC & CNCH xuất sắc của Bộ Công an.
