@@ -12,6 +12,7 @@ const defaultData = {
   dien_thoai_co_so: '0363.365.188',
   don_vi_pccc: 'Phòng Cảnh sát PCCC & CNCH',
   dien_thoai_pccc: '114',
+  nam_ban_hanh: '2026',
   google_maps_link: '',
   business_type: 'Nhà xưởng',
   so_tang: 2,

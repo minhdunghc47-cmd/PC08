@@ -80,13 +80,17 @@ export default function LeftSidebar({ data, updateData }) {
         <div className="space-y-4">
           <h3 className="text-sm font-bold text-slate-500 uppercase tracking-wider">Thông tin Hành chính</h3>
           <div className="flex gap-2">
-            <div className="flex-1">
+            <div className="flex-[2]">
               <label className="block text-xs font-medium text-slate-700 mb-1">Cơ quan CA Tỉnh/TP</label>
               <input name="ten_cong_an_tinh" value={data.ten_cong_an_tinh || ''} onChange={handleChange} className="w-full border p-2 rounded text-sm focus:ring-2 focus:ring-blue-500 outline-none"/>
             </div>
             <div className="flex-1">
-              <label className="block text-xs font-medium text-slate-700 mb-1">Số Phương án</label>
+              <label className="block text-xs font-medium text-slate-700 mb-1">Số PA</label>
               <input name="so_phuong_an" value={data.so_phuong_an || ''} onChange={handleChange} className="w-full border p-2 rounded text-sm focus:ring-2 focus:ring-blue-500 outline-none"/>
+            </div>
+            <div className="flex-1">
+              <label className="block text-xs font-medium text-slate-700 mb-1">Năm</label>
+              <input name="nam_ban_hanh" value={data.nam_ban_hanh || ''} onChange={handleChange} className="w-full border p-2 rounded text-sm focus:ring-2 focus:ring-blue-500 outline-none"/>
             </div>
           </div>
           <div>

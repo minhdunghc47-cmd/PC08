@@ -50,14 +50,14 @@ export default function DocumentPreview({ data }) {
             
             {/* Centered Agency */}
             <div className="flex flex-col items-center text-center mt-12 w-full">
-              <p className="font-normal text-[14pt] uppercase m-0 leading-tight">CÔNG AN {data.ten_cong_an_tinh || '..........'}</p>
+              <p className="font-normal text-[14pt] uppercase m-0 leading-tight">CÔNG AN {data.ten_cong_an_tinh}</p>
               <p className="font-bold text-[13.5pt] uppercase m-0 leading-tight mt-1 whitespace-nowrap tracking-tight">PHÒNG CẢNH SÁT PHÒNG CHÁY, CHỮA CHÁY VÀ CỨU NẠN, CỨU HỘ</p>
               <hr className="border-t-[1.5px] border-black w-2/5 mt-4" />
             </div>
 
             {/* Document Number */}
             <div className="mt-8">
-              <p className="text-[14pt] m-0"><span className="underline underline-offset-4">Số: {data.so_phuong_an || '......... (14)................'}</span></p>
+              <p className="text-[14pt] m-0"><span className="underline underline-offset-4">Số: {data.so_phuong_an}</span></p>
             </div>
           </div>
 
@@ -68,30 +68,32 @@ export default function DocumentPreview({ data }) {
 
           {/* Phần Nội dung */}
           <div className="space-y-6 px-4 text-[14pt]">
-            <p className="flex w-full items-end leading-none">
+            <p className="flex w-full leading-snug">
               <span className="shrink-0 mr-2">Tên cơ sở:</span>
-              <span className="flex-1 border-b-2 border-dotted border-black min-h-[1em] text-center font-bold pb-1">{data.ten_co_so}</span>
+              <span className="flex-1 font-bold pl-2">{data.ten_co_so}</span>
             </p>
-            <p className="flex w-full items-end leading-none">
+            <p className="flex w-full leading-snug">
               <span className="shrink-0 mr-2">Địa chỉ:</span>
-              <span className="flex-1 border-b-2 border-dotted border-black min-h-[1em] text-center pb-1">{data.dia_chi_co_so}</span>
+              <span className="flex-1 pl-2">{data.dia_chi_co_so}</span>
             </p>
-            <p className="flex w-full items-end leading-none">
+            <p className="flex w-full leading-snug">
               <span className="shrink-0 mr-2">Điện thoại:</span>
-              <span className="flex-1 border-b-2 border-dotted border-black min-h-[1em] pb-1 text-center">{data.dien_thoai_co_so}</span>
+              <span className="flex-1 pl-2">{data.dien_thoai_co_so}</span>
             </p>
-            <p className="flex w-full items-end leading-none">
-              <span className="shrink-0 mr-2">Đơn vị được phân công thực hiện nhiệm vụ chữa cháy, cứu nạn, cứu hộ:</span>
-              <span className="flex-1 border-b-2 border-dotted border-black min-h-[1em] text-center pb-1">{data.don_vi_pccc}</span>
-            </p>
-            <p className="flex w-full items-end leading-none">
+            <div className="flex flex-col w-full leading-snug gap-2">
+              <span>Đơn vị được phân công thực hiện nhiệm vụ chữa cháy, cứu nạn, cứu hộ:</span>
+              <span className="pl-8 font-bold">{data.don_vi_pccc}</span>
+            </div>
+            <p className="flex w-full leading-snug">
               <span className="shrink-0 mr-2">Điện thoại:</span>
-              <span className="flex-1 border-b-2 border-dotted border-black min-h-[1em] text-center pb-1">{data.dien_thoai_pccc}</span>
+              <span className="flex-1 pl-2">{data.dien_thoai_pccc}</span>
             </p>
           </div>
           
-          {/* Đẩy chữ Năm 2026 xuống cuối trang */}
-          <div className="text-center font-bold absolute bottom-[75px] left-0 w-full text-[14pt]">Năm 2026</div>
+          {/* Đẩy chữ Năm xuống cuối trang */}
+          <div className="text-center font-bold absolute bottom-[75px] left-0 w-full text-[14pt]">
+            Năm {data.nam_ban_hanh}
+          </div>
         </div>
 
         {/* --- PAGE 2: SECTION A --- */}
