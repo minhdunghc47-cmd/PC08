@@ -23,10 +23,12 @@ export default async function handler(req, res) {
     } catch (error) {
       console.warn(`Model ${modelName} failed:`, error.message);
       lastError = error;
-      // Chỉ dừng toàn bộ nếu API Key bị vô hiệu hóa hoặc sai.
-      // NẾU lỗi 429 Quota (Limit 20 RPD của model), cho phép vòng lặp tiếp tục để Fallback sang model khác!
-      if (error.message.includes("API key not valid")) {
-        break;
+      // Dừng vòng lặp nếu lỗi xác thực hoặc lỗi quá tải 429 (vì các model dùng chung quota RPM)
+      if (error.message.includes("API key not valid") || error.message.includes("429") || error.message.includes("quota")) {
+        // Trích xuất số giây cần đợi nếu có
+        const match = error.message.match(/retry in ([0-9.]+)s/);
+        const waitTime = match ? Math.ceil(parseFloat(match[1])) : 30;
+        return res.status(429).json({ text: `Google AI đang quá tải (Hết hạn mức). Vui lòng đợi ${waitTime} giây rồi bấm lại nhé!` });
       }
     }
   }
