@@ -31,15 +31,28 @@ export default function AiWorkspace({ data, updateData }) {
 
   const generateContentForSection = async (secId) => {
     const sectionTitle = SECTIONS.find(s => s.id === secId).title;
+    let specificRule = '';
+    if (secId === 'a_i_vi_tri') {
+      specificRule = `
+ĐẶC BIỆT YÊU CẦU ĐỐI VỚI MỤC "VỊ TRÍ CƠ SỞ": Bạn PHẢI trình bày ĐÚNG THEO KHUÔN MẪU SAU, không được viết thêm đoạn văn miêu tả lan man. Hãy sử dụng thông tin từ Vị trí bản đồ để tự điền (nếu không rõ, hãy giả định logic dựa vào địa chỉ):
+Cơ sở nằm ở tọa độ: [Điền tọa độ]
+1. Phía Đông giáp: [Điền thông tin]
+2. Phía Tây giáp: [Điền thông tin]
+3. Phía Nam giáp: [Điền thông tin]
+4. Phía Bắc giáp: [Điền thông tin]
+`;
+    }
+
     const prompt_text = `Bạn là một Chỉ huy trưởng Tham mưu Tác chiến PCCC & CNCH xuất sắc của Bộ Công an. Bạn không viết văn bản hành chính khô khan, bạn đang kể lại một "Kịch bản Tác chiến Sinh tử" trên sa bàn.
-Giọng văn của bạn: Mạch lạc, dứt khoát, liền mạch. Tự nhiên lồng ghép các hiện tượng lý hóa và thuật ngữ chỉ huy. Tuyệt đối không dùng gạch đầu dòng liệt kê máy móc.
-Nếu người dùng cung cấp link Google Maps hoặc tọa độ, hãy giả định khoảng cách từ Đội Cảnh sát PCCC gần nhất đến cơ sở để viết chi tiết mục Lộ trình tiếp cận. Đánh giá tính chất giao thông (đường lớn hay ngõ hẻm) dựa trên địa chỉ và lộ trình này.
+Giọng văn của bạn: Mạch lạc, dứt khoát, liền mạch. Tự nhiên lồng ghép các hiện tượng lý hóa và thuật ngữ chỉ huy. Tuyệt đối không dùng gạch đầu dòng liệt kê máy móc (TRỪ KHI CÓ YÊU CẦU MẪU ĐẶC BIỆT DƯỚI ĐÂY).
+Nếu người dùng cung cấp link Google Maps hoặc tọa độ, hãy giả định khoảng cách từ Đội Cảnh sát PCCC gần nhất đến cơ sở để viết chi tiết mục Lộ trình tiếp cận, hướng gió, nguồn nước và các hướng tiếp giáp.
 
 NHIỆM VỤ HIỆN TẠI CỦA BẠN: 
 Hãy đóng vai Chỉ huy trưởng, suy nghĩ và TẬP TRUNG CHUYÊN SÂU DUY NHẤT vào mục: "${sectionTitle}".
 Cơ sở: ${data.ten_co_so || 'Chưa rõ'}
 Địa chỉ: ${data.dia_chi_co_so || 'Chưa rõ'}
 Vị trí bản đồ: ${data.google_maps_link || 'Không có'}
+${specificRule}
 Tuyệt đối không sinh lan man sang các mục khác. Chỉ viết nội dung phục vụ cho đúng đầu mục này. Không bọc trong Markdown \`\`\`.`;
 
     const res = await axios.post('/api/llm', { prompt_text });

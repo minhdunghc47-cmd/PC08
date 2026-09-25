@@ -120,9 +120,9 @@ export default function DocumentPreview({ data }) {
           style={{ width: '794px', minHeight: '1123px', padding: '75px 56px 75px 113px', fontFamily: '"Times New Roman", Times, serif', fontSize: '19px', lineHeight: '1.5', textAlign: 'justify' }}
         >
           <div className="text-justify">
-            <h2 className="font-bold uppercase mb-4">A. ĐẶC ĐIỂM CÓ LIÊN QUAN</h2>
-            <p className="font-bold">I. Vị trí cơ sở</p>
-            <p className="whitespace-pre-wrap mb-4">{data.a_i_vi_tri || '...'}</p>
+            <h2 className="font-bold uppercase mb-4">A. ĐẶC ĐIỂM CÓ LIÊN QUAN ĐẾN CÔNG TÁC CHỮA CHÁY, CỨU NẠN, CỨU HỘ</h2>
+            <p className="font-bold uppercase mb-2">I. Vị trí cơ sở</p>
+            <div className="whitespace-pre-wrap mb-4 ml-8">{data.a_i_vi_tri || 'Cơ sở nằm ở tọa độ: .......................................\n1. Phía Đông giáp: ........................................\n2. Phía Tây giáp: .........................................\n3. Phía Nam giáp: .........................................\n4. Phía Bắc giáp: .........................................'}</div>
             
             <p className="font-bold">II. Giao thông bên trong và bên ngoài</p>
             <p className="whitespace-pre-wrap mb-4">{data.a_ii_giao_thong || '...'}</p>
