@@ -12,19 +12,21 @@ export default function DocumentPreview({ data }) {
   };
 
   return (
-    <div className="bg-gray-200 p-8 overflow-y-auto flex justify-center h-full relative">
+    <div className="bg-gray-200 p-2 md:p-8 overflow-x-auto overflow-y-auto flex md:justify-center w-full h-full relative">
       {/* Header Button */}
-      <div className="absolute top-4 right-6 z-10">
+      <div className="absolute top-4 right-4 md:right-6 z-10">
         <button 
           onClick={handleDownload} 
           disabled={downloading}
-          className="bg-red-600 hover:bg-red-700 text-white px-6 py-2.5 rounded-full font-bold flex items-center gap-2 shadow-lg hover:shadow-xl transition-all"
+          className="bg-red-600 hover:bg-red-700 text-white px-4 md:px-6 py-2 md:py-2.5 rounded-full font-bold flex items-center gap-2 shadow-lg hover:shadow-xl transition-all text-sm md:text-base"
         >
           {downloading ? <Loader2 className="animate-spin" size={18}/> : <Download size={18}/>}
-          Tải xuống .docx
+          Tải .docx
         </button>
+      </div>
+
       {/* Pages Container */}
-      <div className="flex flex-col gap-8 pb-10" style={{ zoom: 0.65 }}>
+      <div className="flex flex-col gap-8 pb-10 origin-top scale-[0.45] sm:scale-[0.55] md:scale-[0.65] lg:scale-[0.65] xl:scale-[0.75] mt-12 md:mt-0" style={{ transformOrigin: 'top center' }}>
         
         {/* --- PAGE 1: COVER PAGE --- */}
         <div 
@@ -136,6 +138,5 @@ export default function DocumentPreview({ data }) {
         </div>
       </div>
       </div>
-    </div>
   );
 }

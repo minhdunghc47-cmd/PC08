@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { FileText, Sparkles, SlidersHorizontal, Menu, X } from 'lucide-react';
 import LeftSidebar from './components/LeftSidebar';
 import AiWorkspace from './components/AiWorkspace';
 import DocumentPreview from './components/DocumentPreview';
@@ -36,21 +37,69 @@ function App() {
     c_tinh_huong_khac: ''
   });
 
+  const [activeTab, setActiveTab] = useState("variables");
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+
   const updateData = (newData) => {
     setData(prev => ({ ...prev, ...newData }));
   };
 
   return (
-    <div className="h-screen w-screen flex bg-slate-100 overflow-hidden text-slate-800 font-sans">
-      <div className="w-1/4 h-full">
-        <LeftSidebar data={data} updateData={updateData} />
+    <div className="h-[100dvh] w-full flex flex-col bg-slate-100 overflow-hidden text-slate-800 font-sans">
+      
+      {/* TABLET HEADER (Hidden on Mobile & Desktop) */}
+      <div className="hidden md:flex lg:hidden bg-slate-800 text-white p-2 items-center shadow-sm z-20">
+        <button onClick={() => setIsDrawerOpen(true)} className="flex items-center gap-2 px-3 py-1 bg-slate-700 rounded hover:bg-slate-600 transition">
+          <Menu size={16} /> Mở cấu hình
+        </button>
+        <span className="ml-4 font-bold text-sm">PC08 Editor</span>
       </div>
-      <div className="w-[35%] h-full">
-        <AiWorkspace data={data} updateData={updateData} />
+
+      {/* DRAWER (Tablet only) */}
+      <div className={`fixed inset-0 z-50 transform transition-transform duration-300 lg:hidden ${isDrawerOpen ? 'translate-x-0' : '-translate-x-full'}`}>
+        <div className={`absolute inset-0 bg-black transition-opacity duration-300 ${isDrawerOpen ? 'opacity-50' : 'opacity-0'}`} onClick={() => setIsDrawerOpen(false)} />
+        <div className="absolute top-0 left-0 w-[85%] max-w-sm h-full bg-white shadow-2xl flex flex-col">
+          <div className="p-3 flex justify-between items-center border-b bg-slate-50">
+            <span className="font-bold text-slate-700">Thông tin Cơ sở</span>
+            <button onClick={() => setIsDrawerOpen(false)} className="p-1 hover:bg-slate-200 rounded"><X className="text-slate-500"/></button>
+          </div>
+          <div className="flex-1 overflow-hidden">
+             <LeftSidebar data={data} updateData={updateData} />
+          </div>
+        </div>
       </div>
-      <div className="w-[40%] h-full shadow-[0_0_20px_rgba(0,0,0,0.1)] z-10 border-l border-slate-300">
-        <DocumentPreview data={data} />
+
+      {/* MAIN CONTAINER */}
+      <div className="flex-1 flex overflow-hidden">
+        {/* VARIABLES (Mobile Tab OR Desktop) */}
+        <div className={`h-full border-r border-slate-300 w-full lg:w-[25%] ${activeTab === 'variables' ? 'block' : 'hidden'} md:hidden lg:block`}>
+          <LeftSidebar data={data} updateData={updateData} />
+        </div>
+
+        {/* AI WORKSPACE (Mobile Tab OR Tablet/Desktop) */}
+        <div className={`h-full border-r border-slate-300 w-full md:w-[50%] lg:w-[33.33%] ${activeTab === 'ai' ? 'block' : 'hidden'} md:block`}>
+          <AiWorkspace data={data} updateData={updateData} />
+        </div>
+
+        {/* PREVIEW (Mobile Tab OR Tablet/Desktop) */}
+        <div className={`h-full w-full md:w-[50%] lg:w-[41.66%] ${activeTab === 'preview' ? 'block' : 'hidden'} md:block`}>
+          <DocumentPreview data={data} />
+        </div>
       </div>
+
+      {/* MOBILE BOTTOM NAV */}
+      <div className="md:hidden flex bg-white border-t border-slate-200 text-[11px] font-medium pb-2 pt-1 shadow-[0_-2px_10px_rgba(0,0,0,0.05)] z-20">
+        <button onClick={() => setActiveTab('variables')} className={`flex-1 py-1 flex flex-col items-center gap-1 ${activeTab === 'variables' ? 'text-indigo-600' : 'text-slate-400 hover:text-slate-600'}`}>
+          <SlidersHorizontal size={22} /> Nhập liệu
+        </button>
+        <button onClick={() => setActiveTab('ai')} className={`flex-1 py-1 flex flex-col items-center gap-1 ${activeTab === 'ai' ? 'text-indigo-600' : 'text-slate-400 hover:text-slate-600'}`}>
+          <Sparkles size={22} /> AI Co-pilot
+        </button>
+        <button onClick={() => setActiveTab('preview')} className={`flex-1 py-1 flex flex-col items-center gap-1 ${activeTab === 'preview' ? 'text-indigo-600' : 'text-slate-400 hover:text-slate-600'}`}>
+          <FileText size={22} /> Bản in
+        </button>
+      </div>
+
     </div>
   );
 }
