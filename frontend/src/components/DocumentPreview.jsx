@@ -49,9 +49,9 @@ export default function DocumentPreview({ data }) {
             </div>
             
             {/* Centered Agency */}
-            <div className="flex flex-col items-center text-center mt-12">
-              <p className="font-normal text-[14pt] uppercase m-0 leading-tight">CÔNG AN TỈNH/THÀNH PHỐ {data.ten_cong_an_tinh || '..........'}</p>
-              <p className="font-bold text-[14pt] uppercase m-0 leading-tight mt-1">PHÒNG CẢNH SÁT PHÒNG CHÁY, CHỮA CHÁY VÀ CỨU NẠN, CỨU HỘ</p>
+            <div className="flex flex-col items-center text-center mt-12 w-full">
+              <p className="font-normal text-[14pt] uppercase m-0 leading-tight">CÔNG AN {data.ten_cong_an_tinh || '..........'}</p>
+              <p className="font-bold text-[13.5pt] uppercase m-0 leading-tight mt-1 whitespace-nowrap tracking-tight">PHÒNG CẢNH SÁT PHÒNG CHÁY, CHỮA CHÁY VÀ CỨU NẠN, CỨU HỘ</p>
               <hr className="border-t-[1.5px] border-black w-2/5 mt-4" />
             </div>
 
