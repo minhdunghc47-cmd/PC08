@@ -58,7 +58,7 @@ export default function DocumentPreview({ data }) {
 
           {/* Tiêu đề phương án */}
           <div className="text-center mt-[100px] mb-[80px]">
-            <p className="font-bold text-[22pt] uppercase m-0">PHƯƠNG ÁN CHỮA CHÁY,<br/>CỨU NẠN, CỨU HỘ</p>
+            <p className="font-bold text-[14pt] uppercase m-0">PHƯƠNG ÁN CHỮA CHÁY,<br/>CỨU NẠN, CỨU HỘ</p>
           </div>
 
           {/* Phần Nội dung */}
@@ -75,21 +75,12 @@ export default function DocumentPreview({ data }) {
           </div>
         </div>
 
-        {/* --- PAGE 2: CONTENT --- */}
+        {/* --- PAGE 2: SECTION A --- */}
         <div 
           className="bg-white shadow-2xl text-black mx-auto shrink-0 relative"
-          style={{
-            width: '794px',
-            minHeight: '1123px',
-            padding: '75px 56px 75px 113px',
-            fontFamily: '"Times New Roman", Times, serif',
-            fontSize: '19px',
-            lineHeight: '1.5',
-            textAlign: 'justify'
-          }}
+          style={{ width: '794px', minHeight: '1123px', padding: '75px 56px 75px 113px', fontFamily: '"Times New Roman", Times, serif', fontSize: '19px', lineHeight: '1.5', textAlign: 'justify' }}
         >
           <div className="text-justify">
-            {/* --- CẤU TRÚC PC08 --- */}
             <h2 className="font-bold uppercase mb-4">A. ĐẶC ĐIỂM CÓ LIÊN QUAN</h2>
             <p className="font-bold">I. Vị trí cơ sở</p>
             <p className="whitespace-pre-wrap mb-4">{data.a_i_vi_tri || '...'}</p>
@@ -108,8 +99,16 @@ export default function DocumentPreview({ data }) {
             
             <p className="font-bold">VI. Hệ thống, phương tiện PCCC tại chỗ</p>
             <p className="whitespace-pre-wrap mb-6">{data.a_vi_pt_tai_cho || '...'}</p>
+          </div>
+        </div>
 
-            <h2 className="font-bold uppercase mt-8 mb-4">B. PHƯƠNG ÁN XỬ LÝ TÌNH HUỐNG PHỨC TẠP NHẤT</h2>
+        {/* --- PAGE 3: SECTION B --- */}
+        <div 
+          className="bg-white shadow-2xl text-black mx-auto shrink-0 relative"
+          style={{ width: '794px', minHeight: '1123px', padding: '75px 56px 75px 113px', fontFamily: '"Times New Roman", Times, serif', fontSize: '19px', lineHeight: '1.5', textAlign: 'justify' }}
+        >
+          <div className="text-justify">
+            <h2 className="font-bold uppercase mb-4">B. PHƯƠNG ÁN XỬ LÝ TÌNH HUỐNG PHỨC TẠP NHẤT</h2>
             <p className="font-bold">1. Giả định tình huống cháy</p>
             <p className="whitespace-pre-wrap mb-4">{data.b_1_gia_dinh || '...'}</p>
             
@@ -131,8 +130,16 @@ export default function DocumentPreview({ data }) {
               <li className="mb-2"><strong>Nhiệm vụ Cảnh sát PCCC:</strong> <span className="whitespace-pre-wrap">{data.b_6_nv_pccc || '...'}</span></li>
               <li className="mb-2"><strong>Nhiệm vụ các lực lượng khác:</strong> <span className="whitespace-pre-wrap">{data.b_6_nv_khac || '...'}</span></li>
             </ul>
+          </div>
+        </div>
 
-            <h2 className="font-bold uppercase mt-8 mb-4">C. CÁC TÌNH HUỐNG KHÁC (CHÁY & CNCH)</h2>
+        {/* --- PAGE 4: SECTION C --- */}
+        <div 
+          className="bg-white shadow-2xl text-black mx-auto shrink-0 relative"
+          style={{ width: '794px', minHeight: '1123px', padding: '75px 56px 75px 113px', fontFamily: '"Times New Roman", Times, serif', fontSize: '19px', lineHeight: '1.5', textAlign: 'justify' }}
+        >
+          <div className="text-justify">
+            <h2 className="font-bold uppercase mb-4">C. CÁC TÌNH HUỐNG KHÁC (CHÁY & CNCH)</h2>
             <p className="whitespace-pre-wrap mb-4">{data.c_tinh_huong_khac || '...'}</p>
           </div>
         </div>
