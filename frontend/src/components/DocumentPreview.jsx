@@ -124,8 +124,8 @@ export default function DocumentPreview({ data }) {
             <p className="font-bold uppercase mb-2">I. Vị trí cơ sở</p>
             <div className="whitespace-pre-wrap mb-4 ml-8">{data.a_i_vi_tri || 'Cơ sở nằm ở tọa độ: .......................................\n1. Phía Đông giáp: ........................................\n2. Phía Tây giáp: .........................................\n3. Phía Nam giáp: .........................................\n4. Phía Bắc giáp: .........................................'}</div>
             
-            <p className="font-bold">II. Giao thông bên trong và bên ngoài</p>
-            <p className="whitespace-pre-wrap mb-4">{data.a_ii_giao_thong || '...'}</p>
+            <p className="font-bold uppercase mb-2">II. Giao thông bên trong và bên ngoài</p>
+            <div className="whitespace-pre-wrap mb-4 ml-8">{data.a_ii_giao_thong || '1. Giao thông bên trong\na) Cổng chính: chiều rộng ....m; chiều cao.....m;\nCổng phụ (nếu có): chiều rộng ....m; chiều cao.....m;\nb) Đường giao thông xung quanh...\n2. Giao thông bên ngoài...'}</div>
             
             <p className="font-bold">III. Nguồn nước phục vụ chữa cháy</p>
             <p className="whitespace-pre-wrap mb-4">{data.a_iii_nguon_nuoc || '...'}</p>

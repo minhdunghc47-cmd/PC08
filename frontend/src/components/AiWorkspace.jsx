@@ -41,6 +41,21 @@ Cơ sở nằm ở tọa độ: [Điền tọa độ]
 3. Phía Nam giáp: [Điền thông tin]
 4. Phía Bắc giáp: [Điền thông tin]
 `;
+    } else if (secId === 'a_ii_giao_thong') {
+      specificRule = `
+ĐẶC BIỆT YÊU CẦU ĐỐI VỚI MỤC "GIAO THÔNG BÊN TRONG VÀ BÊN NGOÀI": Bạn PHẢI trình bày ĐÚNG THEO KHUÔN MẪU SAU. Tự động điền các số liệu, tuyến đường dựa vào bản đồ và logic thực tế:
+
+1. Giao thông bên trong
+a) Cổng chính: chiều rộng [Điền]m; chiều cao [Điền]m;
+Cổng phụ (nếu có): chiều rộng [Điền]m; chiều cao [Điền]m;
+b) Đường giao thông xung quanh các hạng mục, công trình có nguy hiểm về cháy, nổ: chiều rộng: [Điền]m; chiều cao: [Điền]m; kết cấu mặt đường: [Điền]; tải trọng nền đường: [Điền] tấn.
+
+2. Giao thông bên ngoài
+Tuyến đường và khoảng cách từ đơn vị Cảnh sát phòng cháy, chữa cháy và cứu nạn, cứu hộ, đơn vị phòng cháy, chữa cháy và cứu nạn, cứu hộ chuyên ngành đến cơ sở cụ thể:
+- Đội Cảnh sát chữa cháy và cứu nạn, cứu hộ khu vực [Điền] (Phòng PC07) -> Đường [Điền] -> Đường [Điền] -> Cơ sở ([Điền] km).
+- Tổ Cảnh sát chữa cháy và cứu nạn, cứu hộ khu vực [Điền] (Phòng PC07) -> Đường [Điền] -> Đường [Điền] -> Cơ sở ([Điền] km).
+- Đội phòng cháy, chữa cháy và cứu nạn, cứu hộ chuyên ngành [Điền] -> Đường [Điền] -> Đường [Điền] -> Cơ sở ([Điền] km).
+`;
     }
 
     const prompt_text = `Bạn là một Chỉ huy trưởng Tham mưu Tác chiến PCCC & CNCH xuất sắc của Bộ Công an. Bạn không viết văn bản hành chính khô khan, bạn đang kể lại một "Kịch bản Tác chiến Sinh tử" trên sa bàn.
