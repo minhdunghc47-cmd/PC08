@@ -82,7 +82,7 @@ export default function DocumentPreview({ data }) {
             </p>
             <div className="flex flex-col w-full leading-snug gap-2">
               <span>Đơn vị được phân công thực hiện nhiệm vụ chữa cháy, cứu nạn, cứu hộ:</span>
-              <span className="pl-8 font-bold">{data.don_vi_pccc}</span>
+              <span className="text-center font-bold">{data.don_vi_pccc}</span>
             </div>
             <p className="flex w-full leading-snug">
               <span className="shrink-0 mr-2">Điện thoại:</span>
