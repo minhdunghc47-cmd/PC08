@@ -57,7 +57,7 @@ export default function DocumentPreview({ data }) {
 
             {/* Document Number */}
             <div className="mt-8">
-              <p className="text-[14pt] m-0"><span className="underline underline-offset-4">Số: {data.so_phuong_an}</span></p>
+              <p className="text-[14pt] m-0">Số: {data.so_phuong_an}</p>
             </div>
           </div>
 
