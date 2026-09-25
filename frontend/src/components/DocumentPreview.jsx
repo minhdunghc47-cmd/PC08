@@ -41,38 +41,57 @@ export default function DocumentPreview({ data }) {
             textAlign: 'justify'
           }}
         >
-          {/* Header: Cơ quan ban hành & Mẫu PC08 */}
-          <div className="grid grid-cols-2 gap-4 mb-8">
-            <div className="flex flex-col items-center text-center">
-              <p className="font-normal text-[13pt] uppercase m-0 leading-tight">CÔNG AN TỈNH PHÚ THỌ</p>
-              <p className="font-bold text-[13pt] uppercase m-0 leading-tight">PHÒNG CẢNH SÁT PCCC VÀ CNCH</p>
-              <hr className="border-t-[1.5px] border-black w-1/3 mt-2 mb-2" />
-              <p className="text-[13pt] m-0 leading-tight">Số: ........./PA-PC07</p>
+          {/* Header */}
+          <div className="relative mb-12">
+            {/* Top Right */}
+            <div className="absolute top-[-20px] right-0">
+              <p className="font-bold text-[14pt] m-0">Mẫu số PC08</p>
             </div>
-            <div className="flex flex-col items-center text-center">
-              <p className="font-bold text-[13pt] m-0 leading-tight">Mẫu PC08</p>
-              <p className="font-normal text-[13pt] m-0 leading-tight">BH theo Nghị định số 105/2025/NĐ-CP</p>
-              <p className="font-normal text-[13pt] m-0 leading-tight">Ngày 15/5/2025</p>
+            
+            {/* Centered Agency */}
+            <div className="flex flex-col items-center text-center mt-12">
+              <p className="font-normal text-[14pt] uppercase m-0 leading-tight">CÔNG AN TỈNH/THÀNH PHỐ ..........</p>
+              <p className="font-bold text-[14pt] uppercase m-0 leading-tight mt-1">PHÒNG CẢNH SÁT PHÒNG CHÁY, CHỮA CHÁY VÀ CỨU NẠN, CỨU HỘ</p>
+              <hr className="border-t-[1.5px] border-black w-2/5 mt-4" />
+            </div>
+
+            {/* Document Number */}
+            <div className="mt-8">
+              <p className="text-[14pt] m-0"><span className="underline underline-offset-4">Số:......... (14)................</span></p>
             </div>
           </div>
 
           {/* Tiêu đề phương án */}
           <div className="text-center mt-[100px] mb-[80px]">
-            <p className="font-bold text-[14pt] uppercase m-0">PHƯƠNG ÁN CHỮA CHÁY,<br/>CỨU NẠN, CỨU HỘ</p>
+            <p className="font-bold text-[14pt] uppercase m-0">PHƯƠNG ÁN CHỮA CHÁY, CỨU NẠN, CỨU HỘ</p>
           </div>
 
           {/* Phần Nội dung */}
-          <div className="text-justify space-y-3 px-8">
-            <p><span className="font-bold">Tên cơ sở:</span> {data.ten_co_so || "........................................................................"}</p>
-            <p><span className="font-bold">Địa chỉ:</span> {data.dia_chi_co_so || "........................................................................"}</p>
-            <p><span className="font-bold">Điện thoại:</span> 0363.365.188</p>
-            <p><span className="font-bold">Đơn vị được phân công thực hiện nhiệm vụ chữa cháy, CNCH:</span></p>
-            <p className="pl-4">Phòng Cảnh sát PCCC & CNCH, Công an tỉnh Phú Thọ.</p>
-            <p><span className="font-bold">Điện thoại:</span> 114</p>
-            
-            {/* Đẩy chữ Năm 2026 xuống cuối trang bằng khoảng trống tĩnh */}
-            <div className="text-center font-bold absolute bottom-[75px] left-0 w-full">Năm 2026</div>
+          <div className="space-y-6 px-4 text-[14pt]">
+            <p className="flex w-full items-end leading-none">
+              <span className="shrink-0 mr-2">Tên cơ sở:</span>
+              <span className="flex-1 border-b-2 border-dotted border-black min-h-[1em] text-center font-bold pb-1">{data.ten_co_so}</span>
+            </p>
+            <p className="flex w-full items-end leading-none">
+              <span className="shrink-0 mr-2">Địa chỉ:</span>
+              <span className="flex-1 border-b-2 border-dotted border-black min-h-[1em] text-center pb-1">{data.dia_chi_co_so}</span>
+            </p>
+            <p className="flex w-full items-end leading-none">
+              <span className="shrink-0 mr-2">Điện thoại:</span>
+              <span className="flex-1 border-b-2 border-dotted border-black min-h-[1em] pb-1"> </span>
+            </p>
+            <p className="flex w-full items-end leading-none">
+              <span className="shrink-0 mr-2">Đơn vị được phân công thực hiện nhiệm vụ chữa cháy, cứu nạn, cứu hộ:</span>
+              <span className="flex-1 border-b-2 border-dotted border-black min-h-[1em] text-center pb-1">Phòng Cảnh sát PCCC & CNCH</span>
+            </p>
+            <p className="flex w-full items-end leading-none">
+              <span className="shrink-0 mr-2">Điện thoại:</span>
+              <span className="flex-1 border-b-2 border-dotted border-black min-h-[1em] text-center pb-1">114</span>
+            </p>
           </div>
+          
+          {/* Đẩy chữ Năm 2026 xuống cuối trang */}
+          <div className="text-center font-bold absolute bottom-[75px] left-0 w-full text-[14pt]">Năm 2026</div>
         </div>
 
         {/* --- PAGE 2: SECTION A --- */}
