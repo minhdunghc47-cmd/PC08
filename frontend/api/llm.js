@@ -23,10 +23,9 @@ export default async function handler(req, res) {
     } catch (error) {
       console.warn(`Model ${modelName} failed:`, error.message);
       lastError = error;
-      // Dừng nếu lỗi API Key hoặc lỗi 429 Quá tải Quota (tránh spam API)
-      if (error.message.includes("API key not valid") || 
-          error.message.includes("429") || 
-          error.message.includes("quota")) {
+      // Chỉ dừng toàn bộ nếu API Key bị vô hiệu hóa hoặc sai.
+      // NẾU lỗi 429 Quota (Limit 20 RPD của model), cho phép vòng lặp tiếp tục để Fallback sang model khác!
+      if (error.message.includes("API key not valid")) {
         break;
       }
     }
