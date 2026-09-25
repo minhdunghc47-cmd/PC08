@@ -33,10 +33,13 @@ export default function AiWorkspace({ data, updateData }) {
       const sectionTitle = SECTIONS.find(s => s.id === activeSection).title;
       const prompt_text = `Bạn là một Chỉ huy trưởng Tham mưu Tác chiến PCCC & CNCH xuất sắc của Bộ Công an. Bạn không viết văn bản hành chính khô khan, bạn đang kể lại một "Kịch bản Tác chiến Sinh tử" trên sa bàn.
 Giọng văn của bạn: Mạch lạc, dứt khoát, liền mạch. Tự nhiên lồng ghép các hiện tượng lý hóa và thuật ngữ chỉ huy. Tuyệt đối không dùng gạch đầu dòng liệt kê máy móc.
+Nếu người dùng cung cấp link Google Maps hoặc tọa độ, hãy giả định khoảng cách từ Đội Cảnh sát PCCC gần nhất đến cơ sở để viết chi tiết mục Lộ trình tiếp cận. Đánh giá tính chất giao thông (đường lớn hay ngõ hẻm) dựa trên địa chỉ và lộ trình này.
 
 NHIỆM VỤ HIỆN TẠI CỦA BẠN: 
 Hãy đóng vai Chỉ huy trưởng, suy nghĩ và TẬP TRUNG CHUYÊN SÂU DUY NHẤT vào mục: "${sectionTitle}".
-Cơ sở: ${data.ten_co_so || 'Chưa rõ'}, Địa chỉ: ${data.dia_chi_co_so || 'Chưa rõ'}.
+Cơ sở: ${data.ten_co_so || 'Chưa rõ'}
+Địa chỉ: ${data.dia_chi_co_so || 'Chưa rõ'}
+Vị trí bản đồ: ${data.google_maps_link || 'Không có'}
 Tuyệt đối không sinh lan man sang các mục khác. Chỉ viết nội dung phục vụ cho đúng đầu mục này. Không bọc trong Markdown \`\`\`.`;
 
       const res = await axios.post('/api/llm', { prompt_text });

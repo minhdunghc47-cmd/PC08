@@ -84,6 +84,10 @@ export default function LeftSidebar({ data, updateData }) {
             <input name="ten_co_so" value={data.ten_co_so || ''} onChange={handleChange} className="w-full border p-2 rounded text-sm focus:ring-2 focus:ring-blue-500 outline-none"/>
           </div>
           <div>
+            <label className="block text-xs font-medium text-slate-700 mb-1">Tọa độ / Link Google Maps</label>
+            <input name="google_maps_link" type="text" placeholder="https://maps.app.goo.gl/... hoặc 21.xxxx, 105.xxxx" value={data.google_maps_link || ''} onChange={handleChange} className="w-full border p-2 rounded text-sm focus:ring-2 focus:ring-blue-500 outline-none"/>
+          </div>
+          <div>
             <label className="block text-xs font-medium text-slate-700 mb-1">Địa chỉ / Lộ trình</label>
             <textarea name="dia_chi_co_so" value={data.dia_chi_co_so || ''} onChange={handleChange} rows={2} className="w-full border p-2 rounded text-sm focus:ring-2 focus:ring-blue-500 outline-none"/>
           </div>

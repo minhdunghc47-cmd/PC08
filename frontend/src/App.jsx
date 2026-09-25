@@ -8,6 +8,7 @@ function App() {
   const [data, setData] = useState({
     ten_co_so: 'Cơ sở Demo',
     dia_chi_co_so: 'Số 1, Phố Y, Hà Nội',
+    google_maps_link: '',
     business_type: 'Nhà xưởng',
     so_tang: 2,
     tong_dien_tich_xay_dung: 1000,
