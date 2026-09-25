@@ -34,7 +34,7 @@ export default function AiWorkspace({ data, updateData }) {
     let specificRule = '';
     if (secId === 'a_i_vi_tri') {
       specificRule = `
-ĐẶC BIỆT YÊU CẦU ĐỐI VỚI MỤC "VỊ TRÍ CƠ SỞ": Bạn PHẢI trình bày ĐÚNG THEO KHUÔN MẪU SAU, không được viết thêm đoạn văn miêu tả lan man. Hãy sử dụng thông tin từ Vị trí bản đồ để tự điền (nếu không rõ, hãy giả định logic dựa vào địa chỉ):
+CHỈ THỊ TỐI CAO: BẠN PHẢI COPY Y NGUYÊN ĐOẠN TEXT DƯỚI ĐÂY, CHỈ THAY THẾ CÁC TRƯỜNG [Điền...], KHÔNG ĐƯỢC CHẾ THÊM BẤT KỲ CHỮ NÀO KHÁC VÀO TRƯỚC HAY SAU:
 Cơ sở nằm ở tọa độ: [Điền tọa độ]
 1. Phía Đông giáp: [Điền thông tin]
 2. Phía Tây giáp: [Điền thông tin]
@@ -43,7 +43,7 @@ Cơ sở nằm ở tọa độ: [Điền tọa độ]
 `;
     } else if (secId === 'a_ii_giao_thong') {
       specificRule = `
-ĐẶC BIỆT YÊU CẦU ĐỐI VỚI MỤC "GIAO THÔNG BÊN TRONG VÀ BÊN NGOÀI": Bạn PHẢI trình bày ĐÚNG THEO KHUÔN MẪU SAU. Tự động điền các số liệu, tuyến đường dựa vào bản đồ và logic thực tế:
+CHỈ THỊ TỐI CAO: BẠN PHẢI COPY Y NGUYÊN ĐOẠN TEXT DƯỚI ĐÂY, CHỈ THAY THẾ CÁC TRƯỜNG [Điền...], KHÔNG ĐƯỢC CHẾ THÊM BẤT KỲ CHỮ NÀO KHÁC VÀO TRƯỚC HAY SAU, KHÔNG DÙNG MARKDOWN BÔI ĐẬM:
 
 1. Giao thông bên trong
 a) Cổng chính: chiều rộng [Điền]m; chiều cao [Điền]m;
@@ -52,22 +52,21 @@ b) Đường giao thông xung quanh các hạng mục, công trình có nguy hi�
 
 2. Giao thông bên ngoài
 Tuyến đường và khoảng cách từ đơn vị Cảnh sát phòng cháy, chữa cháy và cứu nạn, cứu hộ, đơn vị phòng cháy, chữa cháy và cứu nạn, cứu hộ chuyên ngành đến cơ sở cụ thể:
-- Đội Cảnh sát chữa cháy và cứu nạn, cứu hộ khu vực [Điền] (Phòng PC07) -> Đường [Điền] -> Đường [Điền] -> Cơ sở ([Điền] km).
-- Tổ Cảnh sát chữa cháy và cứu nạn, cứu hộ khu vực [Điền] (Phòng PC07) -> Đường [Điền] -> Đường [Điền] -> Cơ sở ([Điền] km).
-- Đội phòng cháy, chữa cháy và cứu nạn, cứu hộ chuyên ngành [Điền] -> Đường [Điền] -> Đường [Điền] -> Cơ sở ([Điền] km).
+- Đội Cảnh sát chữa cháy và cứu nạn, cứu hộ khu vực [Điền số khu vực] (Phòng PC07) -> Đường [Điền tên đường] -> Đường [Điền tên đường] -> Cơ sở ([Điền số] km).
+- Tổ Cảnh sát chữa cháy và cứu nạn, cứu hộ khu vực [Điền số khu vực] (Phòng PC07) -> Đường [Điền tên đường] -> Đường [Điền tên đường] -> Cơ sở ([Điền số] km).
+- Đội phòng cháy, chữa cháy và cứu nạn, cứu hộ chuyên ngành [Điền tên đội] -> Đường [Điền tên đường] -> Đường [Điền tên đường] -> Cơ sở ([Điền số] km).
 `;
     }
 
-    const prompt_text = `Bạn là một Chỉ huy trưởng Tham mưu Tác chiến PCCC & CNCH xuất sắc của Bộ Công an. Bạn không viết văn bản hành chính khô khan, bạn đang kể lại một "Kịch bản Tác chiến Sinh tử" trên sa bàn.
-Giọng văn của bạn: Mạch lạc, dứt khoát, liền mạch. Tự nhiên lồng ghép các hiện tượng lý hóa và thuật ngữ chỉ huy. Tuyệt đối không dùng gạch đầu dòng liệt kê máy móc (TRỪ KHI CÓ YÊU CẦU MẪU ĐẶC BIỆT DƯỚI ĐÂY).
-Nếu người dùng cung cấp link Google Maps hoặc tọa độ, hãy giả định khoảng cách từ Đội Cảnh sát PCCC gần nhất đến cơ sở để viết chi tiết mục Lộ trình tiếp cận, hướng gió, nguồn nước và các hướng tiếp giáp.
+    const prompt_text = `Bạn là một Chỉ huy trưởng Tham mưu Tác chiến PCCC & CNCH xuất sắc của Bộ Công an.
+${specificRule ? specificRule : `Giọng văn của bạn: Mạch lạc, dứt khoát, liền mạch. Tự nhiên lồng ghép các hiện tượng lý hóa và thuật ngữ chỉ huy. Tuyệt đối không dùng gạch đầu dòng liệt kê máy móc.`}
+Nếu người dùng cung cấp link Google Maps hoặc tọa độ, hãy dựa vào đó để tự lấy số liệu khoảng cách, lộ trình, vị trí tiếp giáp.
 
 NHIỆM VỤ HIỆN TẠI CỦA BẠN: 
-Hãy đóng vai Chỉ huy trưởng, suy nghĩ và TẬP TRUNG CHUYÊN SÂU DUY NHẤT vào mục: "${sectionTitle}".
+Hãy TẬP TRUNG CHUYÊN SÂU DUY NHẤT vào mục: "${sectionTitle}".
 Cơ sở: ${data.ten_co_so || 'Chưa rõ'}
 Địa chỉ: ${data.dia_chi_co_so || 'Chưa rõ'}
 Vị trí bản đồ: ${data.google_maps_link || 'Không có'}
-${specificRule}
 Tuyệt đối không sinh lan man sang các mục khác. Chỉ viết nội dung phục vụ cho đúng đầu mục này. Không bọc trong Markdown \`\`\`.`;
 
     const res = await axios.post('/api/llm', { prompt_text });
