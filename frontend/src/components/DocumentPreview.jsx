@@ -96,7 +96,25 @@ export default function DocumentPreview({ data }) {
           </div>
         </div>
 
-        {/* --- PAGE 2: SECTION A --- */}
+        {/* --- PAGE 2: SƠ ĐỒ TỔNG MẶT BẰNG --- */}
+        <div 
+          className="bg-white shadow-2xl text-black mx-auto shrink-0 relative"
+          style={{ width: '794px', minHeight: '1123px', padding: '75px 56px 75px 113px', fontFamily: '"Times New Roman", Times, serif', fontSize: '19px', lineHeight: '1.5', textAlign: 'justify' }}
+        >
+          <div className="text-center mt-12 mb-6">
+            <h2 className="font-bold uppercase text-[15pt] m-0">SƠ ĐỒ TỔNG MẶT BẰNG</h2>
+          </div>
+          <div className="space-y-4">
+            <p className="indent-8 m-0">
+              Cần thể hiện rõ tên gọi của các hạng mục, nhà, đường giao thông, nguồn nước trong cơ sở và các nguồn nước chữa cháy tiếp giáp xung quanh. Sơ đồ vẽ trên khổ giấy A4 hoặc lớn hơn cho phù hợp.
+            </p>
+            <p className="indent-8 italic m-0">
+              (Sơ đồ tổng mặt bằng: sơ đồ thể hiện đường, lối thoát nạn, vị trí trụ, bể, bến lấy nước chữa cháy, vị trí bố trí phương tiện, thiết bị chữa cháy, cứu nạn, cứu hộ theo từng khu vực, hạng mục công trình trong cơ sở. Sơ đồ vẽ trên khổ giấy A4 hoặc lớn hơn cho phù hợp).
+            </p>
+          </div>
+        </div>
+
+        {/* --- PAGE 3: SECTION A --- */}
         <div 
           className="bg-white shadow-2xl text-black mx-auto shrink-0 relative"
           style={{ width: '794px', minHeight: '1123px', padding: '75px 56px 75px 113px', fontFamily: '"Times New Roman", Times, serif', fontSize: '19px', lineHeight: '1.5', textAlign: 'justify' }}
@@ -123,7 +141,7 @@ export default function DocumentPreview({ data }) {
           </div>
         </div>
 
-        {/* --- PAGE 3: SECTION B --- */}
+        {/* --- PAGE 4: SECTION B --- */}
         <div 
           className="bg-white shadow-2xl text-black mx-auto shrink-0 relative"
           style={{ width: '794px', minHeight: '1123px', padding: '75px 56px 75px 113px', fontFamily: '"Times New Roman", Times, serif', fontSize: '19px', lineHeight: '1.5', textAlign: 'justify' }}
@@ -154,7 +172,7 @@ export default function DocumentPreview({ data }) {
           </div>
         </div>
 
-        {/* --- PAGE 4: SECTION C --- */}
+        {/* --- PAGE 5: SECTION C --- */}
         <div 
           className="bg-white shadow-2xl text-black mx-auto shrink-0 relative"
           style={{ width: '794px', minHeight: '1123px', padding: '75px 56px 75px 113px', fontFamily: '"Times New Roman", Times, serif', fontSize: '19px', lineHeight: '1.5', textAlign: 'justify' }}
