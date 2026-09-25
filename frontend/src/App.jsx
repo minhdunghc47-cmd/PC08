@@ -5,8 +5,13 @@ import AiWorkspace from './components/AiWorkspace';
 import DocumentPreview from './components/DocumentPreview';
 
 const defaultData = {
+  ten_cong_an_tinh: 'Phú Thọ',
+  so_phuong_an: '123/PA-PC07',
   ten_co_so: 'Cơ sở Demo',
   dia_chi_co_so: 'Số 1, Phố Y, Hà Nội',
+  dien_thoai_co_so: '0363.365.188',
+  don_vi_pccc: 'Phòng Cảnh sát PCCC & CNCH',
+  dien_thoai_pccc: '114',
   google_maps_link: '',
   business_type: 'Nhà xưởng',
   so_tang: 2,

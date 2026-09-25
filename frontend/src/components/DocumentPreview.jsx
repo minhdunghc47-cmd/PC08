@@ -50,14 +50,14 @@ export default function DocumentPreview({ data }) {
             
             {/* Centered Agency */}
             <div className="flex flex-col items-center text-center mt-12">
-              <p className="font-normal text-[14pt] uppercase m-0 leading-tight">CÔNG AN TỈNH/THÀNH PHỐ ..........</p>
+              <p className="font-normal text-[14pt] uppercase m-0 leading-tight">CÔNG AN TỈNH/THÀNH PHỐ {data.ten_cong_an_tinh || '..........'}</p>
               <p className="font-bold text-[14pt] uppercase m-0 leading-tight mt-1">PHÒNG CẢNH SÁT PHÒNG CHÁY, CHỮA CHÁY VÀ CỨU NẠN, CỨU HỘ</p>
               <hr className="border-t-[1.5px] border-black w-2/5 mt-4" />
             </div>
 
             {/* Document Number */}
             <div className="mt-8">
-              <p className="text-[14pt] m-0"><span className="underline underline-offset-4">Số:......... (14)................</span></p>
+              <p className="text-[14pt] m-0"><span className="underline underline-offset-4">Số: {data.so_phuong_an || '......... (14)................'}</span></p>
             </div>
           </div>
 
@@ -78,15 +78,15 @@ export default function DocumentPreview({ data }) {
             </p>
             <p className="flex w-full items-end leading-none">
               <span className="shrink-0 mr-2">Điện thoại:</span>
-              <span className="flex-1 border-b-2 border-dotted border-black min-h-[1em] pb-1"> </span>
+              <span className="flex-1 border-b-2 border-dotted border-black min-h-[1em] pb-1 text-center">{data.dien_thoai_co_so}</span>
             </p>
             <p className="flex w-full items-end leading-none">
               <span className="shrink-0 mr-2">Đơn vị được phân công thực hiện nhiệm vụ chữa cháy, cứu nạn, cứu hộ:</span>
-              <span className="flex-1 border-b-2 border-dotted border-black min-h-[1em] text-center pb-1">Phòng Cảnh sát PCCC & CNCH</span>
+              <span className="flex-1 border-b-2 border-dotted border-black min-h-[1em] text-center pb-1">{data.don_vi_pccc}</span>
             </p>
             <p className="flex w-full items-end leading-none">
               <span className="shrink-0 mr-2">Điện thoại:</span>
-              <span className="flex-1 border-b-2 border-dotted border-black min-h-[1em] text-center pb-1">114</span>
+              <span className="flex-1 border-b-2 border-dotted border-black min-h-[1em] text-center pb-1">{data.dien_thoai_pccc}</span>
             </p>
           </div>
           

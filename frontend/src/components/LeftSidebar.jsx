@@ -79,9 +79,33 @@ export default function LeftSidebar({ data, updateData }) {
         {/* Nhóm 1: Thông tin Hành chính */}
         <div className="space-y-4">
           <h3 className="text-sm font-bold text-slate-500 uppercase tracking-wider">Thông tin Hành chính</h3>
+          <div className="flex gap-2">
+            <div className="flex-1">
+              <label className="block text-xs font-medium text-slate-700 mb-1">Cơ quan CA Tỉnh/TP</label>
+              <input name="ten_cong_an_tinh" value={data.ten_cong_an_tinh || ''} onChange={handleChange} className="w-full border p-2 rounded text-sm focus:ring-2 focus:ring-blue-500 outline-none"/>
+            </div>
+            <div className="flex-1">
+              <label className="block text-xs font-medium text-slate-700 mb-1">Số Phương án</label>
+              <input name="so_phuong_an" value={data.so_phuong_an || ''} onChange={handleChange} className="w-full border p-2 rounded text-sm focus:ring-2 focus:ring-blue-500 outline-none"/>
+            </div>
+          </div>
           <div>
             <label className="block text-xs font-medium text-slate-700 mb-1">Tên cơ sở</label>
             <input name="ten_co_so" value={data.ten_co_so || ''} onChange={handleChange} className="w-full border p-2 rounded text-sm focus:ring-2 focus:ring-blue-500 outline-none"/>
+          </div>
+          <div className="flex gap-2">
+            <div className="flex-1">
+              <label className="block text-xs font-medium text-slate-700 mb-1">Điện thoại cơ sở</label>
+              <input name="dien_thoai_co_so" value={data.dien_thoai_co_so || ''} onChange={handleChange} className="w-full border p-2 rounded text-sm focus:ring-2 focus:ring-blue-500 outline-none"/>
+            </div>
+            <div className="flex-1">
+              <label className="block text-xs font-medium text-slate-700 mb-1">SĐT Đơn vị PCCC</label>
+              <input name="dien_thoai_pccc" value={data.dien_thoai_pccc || ''} onChange={handleChange} className="w-full border p-2 rounded text-sm focus:ring-2 focus:ring-blue-500 outline-none"/>
+            </div>
+          </div>
+          <div>
+            <label className="block text-xs font-medium text-slate-700 mb-1">Đơn vị thực hiện NV Chữa cháy</label>
+            <input name="don_vi_pccc" value={data.don_vi_pccc || ''} onChange={handleChange} className="w-full border p-2 rounded text-sm focus:ring-2 focus:ring-blue-500 outline-none"/>
           </div>
           <div>
             <label className="block text-xs font-medium text-slate-700 mb-1">Tọa độ / Link Google Maps</label>
