@@ -23,8 +23,10 @@ export default async function handler(req, res) {
     } catch (error) {
       console.warn(`Model ${modelName} failed:`, error.message);
       lastError = error;
-      // Nếu không phải lỗi 503 (quá tải) hoặc 404 (không tồn tại), mà là lỗi xác thực 400/403 thì nên dừng luôn
-      if (error.message.includes("API key not valid")) {
+      // Dừng nếu lỗi API Key hoặc lỗi 429 Quá tải Quota (tránh spam API)
+      if (error.message.includes("API key not valid") || 
+          error.message.includes("429") || 
+          error.message.includes("quota")) {
         break;
       }
     }
